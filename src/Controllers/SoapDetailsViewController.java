@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 public class SoapDetailsViewController implements Initializable {
 
+    //Instantiating fxml scene objects
     @FXML private Label brandLabel;
     @FXML private Label intendedUseLabel;
     @FXML private Label volumeLabel;
@@ -25,11 +26,11 @@ public class SoapDetailsViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<Soap> soapObjects = new ArrayList<>();
         soapObjects.addAll(createSoapObjects());
-        soapChoiceBox.getItems().addAll(soapObjects);
+        soapChoiceBox.getItems().addAll(soapObjects); // Adding values to choice box
         soapChoiceBox.setValue(soapObjects.get(0));
 
         updateView(soapObjects.get(0));
-        soapChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+        soapChoiceBox.getSelectionModel().selectedItemProperty().addListener( // update view on change of choice box
                 //this is our custom listener
                 (observable, oldValue, newValue) ->{
                     updateView(newValue);
@@ -56,7 +57,6 @@ public class SoapDetailsViewController implements Initializable {
      * @param soap
      */
     public void updateView(Soap soap){
-//        soapImage = new ImageView();
         this.brandLabel.setText(soap.getBrand());
         this.intendedUseLabel.setText(soap.getIntendedUse());
         this.volumeLabel.setText(String.format("%s", soap.getVolume()));
